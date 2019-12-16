@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style type="text/css">
+    /*头部搜索栏css*/
+    .header{
+        background: url(static/images/bcc5827a71da28e2.jpg) no-repeat;
+    }
+    .headerTop{
+        margin-top: 10px;;
+    }
+    .menu span{
+        /*menu菜单扣取*/
+        /*搜索按钮扣取*/
+        display: block;
+        width: 20px;
+        height: 18px;
+        background: url(static/images/jd-sprites.png) no-repeat;
+        background-position: -3px -30px;
+        background-size: 200px;
+        margin-left: 10px;
+        margin: 8px 0 0 15px;
+        position: relative;
+        z-index: 1;
+        float: left;
+    }
+    .JD{
+        /*京东图标*/
+        display: block;
+        width: 20px;
+        height: 18px;
+        background: url(static/images/jd-sprites.png) no-repeat;
+        background-position: -1px 0;
+        background-size: 200px;
+        margin-left: 10px;
+        margin: 8px 0 0 15px;
+        position: relative;
+        z-index: 1;
+        float: left;
+        margin-top: -27px;
+        /*border-right:1px solid #000*/
+    }
+    .search{
+        width: 400px;
+        height: 100px;
+        margin-left: 74px;
+        margin-top: 10px;
+    }
+    .search1{
+        display: inline-block;
+        width: 100%;
+        border: none;
+        border-radius: 15px;
+        height: 30px;
+        overflow: hidden;
+        background: #f7f7f7;
+        font-size: 12px;
+        -webkit-box-align: center;
+        line-height: 30px;
+        position: relative;
+        top: 0;
+        left: 0;
+        padding-left: 35px;
+        padding-right: 10px;
+        box-sizing: border-box
+    }
+    .search_icon{
+        /*搜索按钮扣取*/
+        display: block;
+        width: 18px;
+        height: 15px;
+        background: url(static/images/jd-sprites.png) no-repeat;
+        background-position: -80px 0;
+        background-size: 200px;
+
+        margin: 8px 0 0 15px;
+        position: relative;
+        z-index: 1;
+        float: left;
+        margin-top: -27px;
+        margin-left: 40px;
+    }
+
+    .search input{
+        width: 90%;
+        margin-left: 27px;
+        border: none;/* 去除input边框 */
+    }
+    .login span{
+        float: left;
+        margin-top: -95px;
+        margin-left: 500px;
+    }
+
+    /*图片轮播css*/
+    #container {
+        width: 96%;
+        height: 250px;
+        border: none;
+        border-radius: 15px;// 图片切角
+        overflow: hidden;
+        overflow: hidden;
+        margin-left: 20px;
+    }
+
+    #photo {
+        width: 3500px;
+        animation: switch 5s ease-out infinite;
+    }
+
+    #photo > img {
+        float: left;
+        width: 630px;
+        height: 300px;
+    }
+
+    @keyframes switch {
+        0%, 25% {
+            margin-left: 0;
+        }
+        25%, 50% {
+            margin-left: -400px;
+        }
+        50%, 75% {
+            margin-left: -800px;
+        }
+        75%, 100% {
+            margin-left: -1200px;
+        }
+    }
+
+    /*main部分css*/
+    .main{
+        background: url(static/images/bcc5827a71da28e2.jpg) no-repeat;
+        /*height: 800px;*/
+        border-radius: 15px;
+    }
+    /*hot热图*/
+    .hotImg img{
+        /*margin-left: 10px;*/
+        width: 100%;
+        border-radius: 15px;/**图片切角 */
+    }
+    .context{
+        display: inline-block;/** div一行显示 */
+    }
+    .context img{
+        width: 50%;
+        height: 50%;
+    }
+
+    /*秒杀部分*/
+    .seckill{
+        /*width: 100%;*/
+        /*height: 250px;*/
+        /*position: fixed;*/
+        position: fixed;
+        height: 250px;
+        width: 100%;
+        z-index: 0;
+        background: white;
+        border-radius: 15px;/**图片切角 */
+        margin-top: 30px;
+    }
+    .seckill span{
+        text-align: center;
+    }
+    .j_init_price{
+        color: #999;
+        font-size: 12px;
+        text-decoration-line: line-through;/** 给商品划线 */
+        line-height: 10px;
+        margin-left: 10px;
+    }
+</style>
+<body>
+
+<div class="header">
+<div class="headerTop">
+    <div class="menu">
+        <span></span>
+    </div>
+    <div class="search">
+        <div class="search1">
+            <input type="text" name="search" placeholder="保险箱">
+        </div>
+        <span class="JD"></span>
+        <span class="search_icon"></span>
+    </div>
+    <div class="login">
+        <span>登录</span>
+    </div>
+</div>
+<!--图片轮播-->
+<div class="imgActive">
+    <div id="container">
+        <div id="photo">
+            <img src="static/images/imgActive/1.jpg" />
+            <img src="static/images/imgActive/2.jpg" />
+            <img src="static/images/imgActive/3.jpg" />
+            <img src="static/images/imgActive/4.jpg" />
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="main">
+    <!--hot热图-->
+    <div class="hotImg">
+        <img src="static/images/imgActive/hot.gif">
+    </div>
+    <!-- 分类推荐-->
+    <div class="imgClass">
+        <div class="context">
+            <img src="static/images/imgClass/京.png"><br>
+            <span>京东超市</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgClass/东.png"><br>
+            <span>数码电器</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgClass/11.png"><br>
+            <span>京东服饰</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgClass/点.png"><br>
+            <span>京东生鲜</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgClass/11.png"><br>
+            <span>京东到家</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgClass/抢.png"><br>
+            <span>充值缴费</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgClass/百.png"><br>
+            <span>9.9元拼</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgClass/亿.png"><br>
+            <span>领劵</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgClass/补.png"><br>
+            <span>赚钱</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgClass/贴.png"><br>
+            <span>PLUS会员</span>
+        </div>
+    </div>
+
+    <!--秒杀推荐-->
+    <div class="seckill">
+        <!-- 秒杀商品-->
+        <div class="context">
+            <img src="static/images/imgSeckill/1.jpg"><br>
+            <span>￥1999</span><br>
+            <span class="j_init_price" price="269900">￥2699</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgSeckill/2.jpg"><br>
+            <span>￥1999</span><br>
+            <span class="j_init_price" price="269900">￥2699</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgSeckill/3.jpg"><br>
+            <span>￥1999</span><br>
+            <span class="j_init_price" price="269900">￥2699</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgSeckill/4.png"><br>
+            <span>￥1999</span><br>
+            <span class="j_init_price" price="269900">￥2699</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgSeckill/5.jpg"><br>
+            <span>￥1999</span><br>
+            <span class="j_init_price" price="269900">￥2699</span>
+        </div>
+    </div>
+
+    <!-- 走心推荐 图片滑动切换-->
+    <div class="heartCommend">
+        <img src="static/images/imgActive/1.jpg">
+        <img src="static/images/imgActive/2.jpg">
+        <img src="static/images/imgActive/3.jpg">
+    </div>
+
+</div>
+
+
+</body>
+</html>

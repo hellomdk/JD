@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>分类</title>
+</head>
+<style>
+    body{
+        background: #f7f7f7;
+        margin:0;
+		padding:0;
+    }
+    .backg{
+        background: #ffffff;
+    }
+    .container{
+    	width:100%;
+    	overflow: hidden;
+    	margin: auto;
+    	min-width:250px;
+    	/*min-height: 500px;*/
+    }
+    /*头部css*/
+    .header {
+    	position: fixed;
+    	width: 100%;
+        font-size: 16px;
+        display: flex;
+        display: -webkit-flex;
+    }
+
+    .icon1 {
+        display: inline-block;
+        width: 20px;
+        height: 30px;
+
+        background: url(static/images/jd-sprites.png) no-repeat;
+        background-position: -22px 3px;
+        background-size: 200px;
+        margin-left: 10px;
+        margin: 13px 0 0 15px;
+    }
+    
+    .icon2_div{
+	    float: right;
+        margin-top: 28px;
+        margin-right: 2%;
+        margin-top: 24px;
+    	/*margin-left: 13%;*/
+    }
+    .icon2{
+    	background: url(static/images/RtClass/header/头部3.png) no-repeat;
+	    background-size: 20px;
+	    display: inline-block;
+	    line-height: 0;
+	    width: 20px;
+	    height: 20px;
+    }
+
+    .headertxt1 {
+    	/*display: flex;
+        flex-wrap: wrap-reverse;*/
+       width: 100%;
+       text-align: center;
+    }
+    .headertxt{
+    	/*margin: 0 70px;*/
+	    height: 44px;
+	    font-size: 16px;
+	    line-height: 44px;
+	    text-align: center;
+	    color: #333;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+    }
+    
+    /*第一部分css*/
+   .main{
+   		position: fixed;
+   		margin-top: 50px;
+   }
+    /*底部导航栏*/
+    .bottom{
+        width: 100%;
+        position: fixed;
+        margin: auto;
+        padding:0;
+        bottom:0px;
+        left:0;
+        right:0;
+        /*以上是固定底部导航*/
+        background: white;
+        display: flex;
+        display: -webkit-flex;
+        text-align: center; /**居中显示 */
+    }
+    .bottom li{
+        float: left;
+        list-style: none;
+    }
+    .bottom img{
+        width: 80%;
+    }
+    
+    /*左侧菜单栏*/
+   .jd-category-tab{
+   	    float: left;
+	    min-width: 76px;
+	    width: 76px;
+	    height: auto;
+	    overflow-y: auto;
+	    min-height: 100%;
+   }
+   
+   /*取消滚动条*/
+   .jd-category-tab::-webkit-scrollbar{
+   		display: none;
+   }
+   .main_left{
+   		/*overflow: hidden;*/ 
+   		height: 812px;
+   }
+   
+   .main_left ul{
+	    display: block;
+	    margin: 0;
+	    padding: 0;
+	    list-style-type: none;
+   }
+   
+   .main_left li{
+	    height: 46px;
+	    line-height: 46px;
+	    /*background: #fff;*/
+	    text-align: center;
+	    position: relative;
+   }
+   
+   /*右侧按钮*/
+   .delete-box,.rank{
+	    display: box;
+	    display: -webkit-box;
+	    display: -moz-box;
+	    display: -ms-box;
+	    display: -o-box;
+	    box-align: center;
+	    -webkit-box-align: center;
+	    -moz-box-align: center;
+	    -ms-box-align: center;
+	    -o-box-align: center;
+	    float: right;
+	    height: 14px;
+   }
+   
+   .delete-box a{
+   		text-decoration: none;
+	    background: transparent;
+	    -webkit-tap-highlight-color: transparent;
+   }
+   
+   .delete-box span ,.rank span{
+	    display: block;
+	    color: #848689;
+	    font-size: 12px;
+	    line-height: 10px;
+	    margin-left: 4px;
+	    position: relative;
+	    top: 1px;
+	}
+	
+	.delete-box i {
+	    background: url("static/images/RtClass/清空.png") no-repeat;
+	    background-size: 12px 12px;
+	    display: block;
+	    line-height: 0;
+	    width: 12px;
+	    height: 12px;
+	}
+	
+	.rank-icon{
+		background: url("static/images/RtClass/排行榜.png") no-repeat;
+	    background-size: 12px 12px;
+	    display: block;
+	    line-height: 0;
+	    width: 12px;
+	    height: 12px;
+	}
+	
+	.right-arrow{
+		background: url("static/images/RtClass/右箭头.png") no-repeat;
+	    background-size: 12px 12px;
+	    display: block;
+	    line-height: 0;
+	    width: 12px;
+	    height: 12px;
+	}
+	
+	ul li img{
+	    width: 70px;
+		height: 70px;
+	}
+	
+	/*商品div*/
+	.jd-category-div{
+	    display: block;
+    	margin: 19px 7px 0;
+    	min-width: 210px;
+	}
+   
+   /*右侧内容*/
+  	.main_right{
+	    overflow: auto;
+        background: white;
+    	padding-bottom: 10px;
+    	overflow-y: auto;
+    	height: 812px;
+  	}
+  	
+  	/*取消滚动条*/
+  	.main_right::-webkit-scrollbar{
+  		display: none;
+  	}
+    
+    /*li标签测试*/
+    .main_right ul{
+            display: flex;
+            flex-wrap: wrap-reverse;
+            list-style: none;
+            padding-left: 0px;
+			margin-left: 0px;
+			margin-top: 0px;
+			margin-right: 4px;
+			margin-bottom: 4px;
+			padding-left: 0px;
+			margin-left: 4px;
+        }
+    .main_right ul li{
+            width: 31%;
+            float: left;
+    		text-align: center;
+            margin-top: 20px;
+            padding: 1px;
+        }
+    .main_right ul li:nth-of-type(6n){
+            margin-right: 0;
+        }
+        
+    /*input设置*/
+   .jd-header-search-input{
+	    display: inline-block;
+        width: 100%;
+	    /*margin-left: 10%;
+	    margin-top: 10px;*/
+	    border: none;
+	    border-radius: 15px;
+	    height: 30px;
+	    overflow: hidden;
+	    background: #f7f7f7;
+	    font-size: 12px;
+	    -webkit-box-align: center;
+	    line-height: 30px;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    padding-left: 35px;
+	    padding-right: 10px;
+	    box-sizing: border-box;
+   }
+   .jd-header-search-input input{
+	   	border: 0;
+	    background: 0 0;
+	    font-size: 12px;
+	    color: #232326;
+	    padding-left: 5px;
+	    width: 19em;
+	    box-sizing: border-box;
+	    -webkit-box-flex: 1;
+	    height: auto;
+	    margin: 0 0 0 5px;
+	    vertical-align: middle;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    width: 100%;
+	    line-height: 30px;
+   }
+   .jd-header-search-box{
+	    margin-right: 3%;
+	    margin-left: 3%;
+	    margin-top: 9px;
+	    height: 30px;
+	    position: relative;
+   }
+   .jd-header-icon-fdj{
+	   	display: block;
+	    width: 18px;
+	    height: 15px;
+	    background: url(https://st.360buyimg.com/so/images/search/jd-sprites.png?__inline) no-repeat;
+	    background-position: -80px 0;
+	    background-size: 200px;
+	    margin-left: 10px;
+	    margin: 8px 0 0 15px;
+	    position: relative;
+	    z-index: 1;
+	    float: left;
+   }
+</style>
+
+
+<body>
+<div class="container">
+    <div class="header backg">
+    	<div>
+    		<a href="javascript:history.back(-1)">
+    			<span class="icon1"></span>
+    		</a>
+    	</div>
+        <div class="headertxt1">
+        	<div class="jd-header-search-box" style="margin-right: 32px;">
+        		<i class="jd-header-icon-fdj"></i>
+        		<div class="jd-header-search-input">
+        			<input value="" maxlength="20" name="keyword" id="msKeyWord" type="text" cleardefault="no" autocomplete="off" placeholder="怡宝矿泉水" class="hilight2">
+        		</div>
+        	</div>
+        	
+	        <!--<span class="headertxt">我的京东</span>-->
+        </div>
+        <div class="icon2_div">
+	        <span class="icon2"></span>
+        </div>
+    </div>
+
+	
+	<!-- ul主题信息列表 -->
+    <div class="main">
+    	<div class="jd-category-tab">
+    		<div class="main_left">
+    		<ul>
+    			<li>热门推荐</li>
+    			<li>手机数码</li>
+    			<li>家用电器</li>
+    			<li>电脑办公</li>
+    			<li>计生情趣</li>
+    			<li>美妆护肤</li>
+    			<li>个人清洁</li>
+    			<li>汽车生活</li>
+    			<li>京东超市</li>
+    			<li>男装</li>
+    			<li>男鞋</li>
+    			<li>女装</li>
+    			<li>女鞋</li>
+    			<li>母婴童装</li>
+    			<li>图书影像</li>
+    			<li>户外运动</li>
+    			<li>内衣搭配</li>
+    			<li>食品生鲜</li>
+    			<li>酒水饮料</li>
+    			<li>家具套装</li>
+    			<li>家居厨具</li>
+    			<li>箱包手包</li>
+    			<li>钟表珠宝</li>
+    			<li>玩具乐器</li>
+    		</ul>
+    		
+    	</div>
+        </div>
+        <div class="main_right">
+        	<div class="jd-category-div">
+        		<a class="delete-box">
+        			<i></i>
+        			<span>清空</span>
+        		</a>
+        		<h4>浏览足迹</h4>
+        		<ul>
+	        		<li>
+	    			  	<img src="static/images/RtClass/被子被芯.jpg"><br>
+		            	<span>被子背心</span>
+	        		</li>
+        		</ul>
+        	</div>
+        	
+        	<div class="jd-category-div">
+        		<a class="rank">
+        			<i class="rank-icon"></i>
+        			<span>排行榜</span>
+        			<i class="right-arrow"></i>
+        		</a>
+        		<h4>热门分类</h4>
+        		<ul>
+	        		<li>
+	    			  	<img src="static/images/RtClass/手机.png"><br>
+		            	<span>手机</span>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/耳机.png"><br>
+		            	<span>耳机</span>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/华为.png"><br>
+		            	<span>华为</span>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/电饭煲.png"><br>
+		            	<span>电饭煲</span>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/电磁炉.png"><br>
+		            	<span>电磁炉</span>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/路由器.png"><br>
+		            	<span>路由器</span>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/避孕套.png"><br>
+		            	<span>避孕套</span>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/口红.png"><br>
+		            	<span>口红</span>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/吹风机.png"><br>
+		            	<span>吹风机</span>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/三只松鼠.png"><br>
+		            	<span>三只松鼠</span>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/洗衣液.png"><br>
+		            	<span>洗衣液</span>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/保温杯.png"><br>
+		            	<span>保温杯</span>
+	        		</li>
+	        		
+        		</ul>
+        	</div>
+        	
+        	<div class="jd-category-div">
+        		<h4>家电搜索</h4>
+        		<ul>
+	        		<li>
+	    			  	<img src="static/images/RtClass/冰箱.png"><br>
+		            	<span>冰箱</span>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/洗衣机.png"><br>
+		            	<span>洗衣机</span>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/电视.png"><br>
+		            	<span>电视</span>
+	        		</li>
+        		</ul>
+        	</div>
+        	
+        </div>
+</div>
+<div class="bottom">
+    <div>
+        <a href="index.html"><img src="static/images/bottom/首页.png"></a>
+    </div>
+    <div>
+        <a href="分类.html"><img src="static/images/bottom/分类1.png"></a>
+    </div>
+    <div>
+        <a><img src="static/images/bottom/双11.gif"></a>
+    </div>
+    <div>
+        <a><img src="static/images/bottom/购物车.png"></a>
+    </div>
+    <div>
+        <a href="persons.html"><img src="static/images/bottom/我的.png"></a>
+    </div>
+</div>
+
+</body>
+</html>

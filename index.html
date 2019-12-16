@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>京东首页</title>
+	<!--    计时器引入-->
+	    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
+</head>
+<style>
+	 body{
+	 	margin: 0;
+	 	padding: 0;
+	 }
+	 .mainContext{
+	 	height: 1000px;
+	 	margin-bottom: 40px;
+	 }
+	/*header背景色*/
+	.header-top{
+		background: url(static/images/main/background.jpg) no-repeat;
+		background-position: center center;
+		background-size: cover;
+		width: 100%;
+		height: 12rem;
+		overflow: hidden;
+		position: relative;
+	}
+	.mjd-header{
+		background: #c4031a;
+	    display: block;
+	    position: fixed;
+	    height: 44px;
+	    left: 0;
+	    top: 0;
+	    right: 0;
+	    z-index: 99999;
+	}
+	
+	/*search搜索头部*/
+	.common-head-search-wrapper{
+		top: 0;
+		z-index: 100;
+		width: 100%;
+	}
+	
+	.jd-header-search-box{
+		margin-right: 36px;
+		margin-top: 7px;
+		height: 30px;
+		position: relative;
+	}
+	
+	.search-input-left-jd{
+		display: block;
+		width: 20px;
+		height: 15px;
+		background: url(static/images/main/jd.png) no-repeat;
+        background-size: 20px 15px;
+        margin: 8px 8px 0 15px;
+        position: relative;
+        z-index: 1;
+        float: left;
+	}
+	.jd-header-search-box .search-input-left-icon{
+		margin-left: 5px;
+	}
+	.search-input-left-icon{
+		display: block;
+		width: 18px;
+		height: 15px;
+		background: url(static/images/jd-sprites.png) no-repeat;
+        background-position: -80px 0;
+        background-size: 200px;
+        margin: 8px 8PX 0 15px;
+        position: relative;
+        z-index: 1;
+        float: left;
+	}
+	
+	.search-input-left-jd:after{
+		content: "";
+		position: absolute;
+		border-right: 1px solid #ddd;
+		top: 0;
+		left: 26px;
+		height: 16px;
+	}
+	
+	/*搜索div 绝对定位*/
+	.search-input{
+		padding-left: 68px;
+		display: inline-block;
+		width: 100%;
+		border: none;
+		border-radius: 15px;
+		height: 30px;
+		overflow: hidden;
+		background-color: #f7f7f7;
+		font-size: 12px;
+		-webkit-box-align: center;
+		line-height: 30px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		/*padding-left: 35px;*/
+		padding-right: 10px;
+		box-sizing: border-box;
+	}
+	
+	.search-input input{
+		border: 0;/**消除边框*/
+		background: 0 0;/**消除背景色*/
+		font-size: 12px;
+		color: #232326;
+		padding-left: 5px;
+		width: 19em;
+		box-sizing: border-box;/**box-sizing 属性允许您以特定的方式定义匹配某个区域的特定元素,比如可以排放置两个带边框的框*/
+		-webkit-box-flex: 1;/**box-flex属性指定box的子元素是否灵活或固定的大小*/
+		height: auto;
+		margin: 0 0 0 5px;
+		vertical-align: center;/**将其底端通父元素的基线对齐*/
+		text-overflow: ellipsis;/**文本溢出时...隐藏*/
+		white-space: nowrap;/**规定段落中的文本不进行换行*/
+		width: 100%;
+		line-height: 30px;
+	}
+	
+	
+	.jd-common-header-icon{
+		display: block;
+		z-index: 120;
+		position: absolute;
+		width: 40px;
+		height: 44px;
+		top: 0;
+	}
+	.jd-common-header-icon span{
+		margin: 14px 0 0 15px;
+		width: 20px;
+		height: 18px;
+		display: block;
+		background: url(static/images/main/menu.png) no-repeat;
+        background-size: 100% 100%;
+	}
+	.jd-header-search-form{
+		margin: 0 20px 0 50px;
+	}
+	.jd-common-header-icon-login{
+		z-index: 120;
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 40px;
+		height: 44px;
+	}
+	
+	.jd-common-header-icon-login span{
+		display: inline-block;
+		margin: 10px 0;
+		color: #fff;
+		font-size: 14px;
+	}
+	
+	/*图片轮播css*/
+    .picture-transform{
+        display: block;
+	    z-index: 120;
+	    position: absolute;
+	    width: 100%;
+	    height: 100%;
+	    top: 52px;
+    }
+    #container {
+        width: 96%;
+        height: 138.98px;
+        border: none;
+        border-radius: 15px;/** 图片切角 */
+        overflow: hidden;
+        margin: auto;
+    }
+
+    #photo {
+        width: 3500px;
+        animation: switch 5s ease-out infinite;
+    }
+
+    #photo > img {
+        float: left;
+        width: 10%;
+        height: 10%;
+        opacity: 1;
+    }
+
+    @keyframes switch {
+        0%, 25% {
+            margin-left: 0;
+        }
+        25%, 50% {
+            margin-left: -350px;
+        }
+        50%, 75% {
+            margin-left: -700px;
+        }
+        75%, 100% {
+            margin-left: -1050px;
+        }
+    }
+    /*图片轮播css*/
+   /*第二部分菜单列表, 外层绝对定位*/
+  .floor-box-wrapper{
+  		width: 100%;
+  		overflow: auto;
+  		position: relative;
+  		min-height: 8.1rem;
+  }
+  .floor-box-list{
+	  	position: absolute;
+	  	top: 0;
+	  	left: 0;
+	  	width: 100%;
+	  	height: 100%;
+  }
+  
+  .floor-box-list a{
+  		text-decoration: none;
+  		width: 20%;
+  		text-align: center;
+  		display: block;
+  		float: left;
+  }
+  .floor-box-list a img{
+  		width: 2rem;
+  		margin-top: .5rem;
+  }
+  .floor-box-list a span{
+  		display: block;
+  		margin-top: .3rem;
+  		font-size: .6rem;
+  		color: #666;
+  }
+  /*第二部分结束*/
+  /*第三部分 热图*/
+ .floor-the-hot{
+	position: relative;
+	margin-left: .5rem;
+	margin-right: .5rem;
+	margin-bottom: .5rem;
+	margin-top: .5rem;
+	height: 5rem;
+	font-size: 0;
+ }
+ .show-img{
+ 	overflow: hidden;
+ 	position: absolute;
+ 	left: 0;
+ 	top: 0;
+ }
+ .show-img img{
+ 	opacity: 1;
+ 	transform: opacity .3sease-in;
+ 	width: 100%;
+ 	height: 100%;
+ }
+ /*第三部分结束*/
+ /*第四部分*/
+ .floor-seckill{
+ 	background-color: #c4031a;
+ 	display: block;
+ 	position: relative;
+ 	height: 10rem;
+ 	
+	/*z-index: 120;
+	position: absolute;*/
+	width: 100%;
+	/*top: 420px;*/
+ }
+ .floor-the-container{
+ 	background-color: white;
+    width: 96%;
+    height: 138.98px;
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    float: left;
+    margin: 10px 10px 10px 7px;
+    /*margin: auto;*/
+    /*margin-top: 10px;*/
+    /*margin-bottom: 10px;*/
+ }
+    .seckill{
+        display: flex;
+        display: -webkit-flex;
+        overflow-y: hidden;
+        text-align: left;
+        margin: auto;
+    }
+    .seckill span{
+        text-align: center;
+    }
+    .j_current_price{
+    	color: red;
+    }
+    .j_init_price{
+        color: #999;
+        font-size: 12px;
+        text-decoration-line: line-through;/** 给商品划线 */
+        line-height: 10px;
+        margin-left: 10px;
+    }
+    /*div横向滚动*/
+    .slide-box{
+        display: -webkit-box;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling:touch;
+    }
+    .top{
+    	display: flex;
+        text-align: left;
+        font-size: 2ex;
+    }
+    .context{
+    	width: 4rem;
+    	padding: 10px;
+    }
+    .context img{
+    	width: 100%;
+    	height: 67%;
+    }
+    
+    .jd-skill-text{
+    	float: left;
+    	display: inline-block;
+    	width: 3.45rem;
+    	height: 1.35rem;
+    	margin: .4rem 0 .3rem .45rem;
+    	background: url(static/images/main/skill.png) no-repeat;
+    	background-size: contain;
+    }
+    /*第五部分 新人专享*/
+   .floor{
+   	    font-size: 0;
+	    width: 100%;
+	    overflow: hidden;
+   }
+   .floor-new-person{
+   		background-color: #c4031a;
+	 	display: block;
+	 	position: relative;
+	 	width: 100%;
+	 	margin-top: -1%;
+		/*z-index: 120;
+		position: absolute;
+		width: 100%;
+		top: 578px;*/
+   }
+   .floor-new-person-container{
+	   	background-color: white;
+	    width: 96%;
+	    /*height: 138.98px;*/
+	    border: none;
+	    border-radius: 15px;
+	    overflow: hidden;
+	    float: left;
+	    margin: 10px 10px 10px 7px;
+	    height: 119px;
+   }
+   .floor-new-person-show-img{
+   		overflow: hidden;
+   		position: absolute;
+   		left: 0;
+   		top: 0;
+   }
+   .floor-new-person-show-img img{
+   		width: 100%;
+   		height: 119px;
+   }
+   .floor-new-person-show{
+   		width: 50%;
+   		height: 8rem;
+   		position: relative;
+   		float: left;
+   }
+   
+   /*第六部分*/
+  .floor-the-hot2{
+  		background-color: #c4031a;
+	  	display: block;
+		position: relative;
+		width: 100%;
+		height: 120px;
+  }
+  /*第六部分结束*/
+  /*第七部分 打折推荐*/
+  .floor-the-discount{
+  	    position: absolute;
+  		background-color: #c4031a;
+  		height: 119px;
+  		text-align: center;
+  }
+  
+  .floor-the-discount-list{
+  		height: 119px;
+	    text-decoration: none;
+	    width: 23%;
+	    text-align: center;
+	    display: block;
+	    float: left;
+	    padding-left: 3px;
+	    padding-right: 3px;
+	    text-align: center;
+	    margin: auto;
+  }
+  
+  
+  .floor-the-discount-list-backbg{
+  		width: 100%;
+  		height: auto;
+  		z-index: 99;
+  }
+  .floor-the-discoun-imglist{
+  		/*height: 6rem!important;*/
+	    float: left;
+	    margin: auto;
+    	margin-top: -104px;
+  }
+  
+  .floor-the-discoun-list-img{
+  		height: auto;
+  		width: 90%;
+  		margin-top: -3px;
+  		/*height: 6rem!important;*/
+  }
+  
+  /**图片上方的span*/
+  .discount-span{
+  		width: 71px;
+  		display: inline-block;/**将span当成块级元素*/
+  		white-space: nowrap;/*强制span不换行**/
+  		overflow: hidden;/**超出宽度部分隐藏*/
+  		text-overflow: ellipsis;/**超出部分点点代替*/
+	    font-size: .5rem;
+  }
+   /**图片上方的span*/
+    .floor-the-discount-top-span{
+    	position:absolute;
+	    margin-left: -80px;
+    }
+    
+    /**图片下方的span*/
+    .floor-the-discount-bootom-span{
+    	position:relative; 
+	    margin-left: -80px;
+    }
+    
+    /**第八部分 商品；列表*/
+   .floor-the-product{
+   		position: relative;
+   		margin-top: 8rem;
+   }
+   .floor-the-product-recommended{
+   		display: block;
+	    position: absolute;
+	    height: 35px;
+	    left: 0;
+	    right: 0;
+	    top: 0;
+	    bottom: 0;
+   }
+   .floor-the-product-recommended img{
+	   	min-width: 1px;
+	    width: auto;
+	    max-height: 100%;
+	    text-align: center;
+	    margin: 0 auto;
+   }
+    /*li标签测试*/
+    .floor-the-product ul{
+            display: flex;
+            flex-wrap: wrap-reverse;
+            list-style: none;
+            padding-left: 0px;
+			margin-left: 0px;
+			margin-top: 0px;
+			margin-right: 4px;
+			margin-bottom: 4px;
+			padding-left: 0px;
+			margin-left: 4px;
+        }
+    .floor-the-product ul li{
+            width: 45%;
+            float: left;
+    		text-align: center;
+            margin-top: 20px;
+            padding: 1px;
+        }
+    .floor-the-product ul li:nth-of-type(6n){
+            margin-right: 0;
+        }
+     
+     /*商品描述*/   
+    .floor-the-product-simpler-desc{
+    	text-align: left;
+    	box-sizing: border-box;
+    	font-size: 13px;
+    	height: 31px;
+    	overflow: hidden;
+    	text-overflow: ellipsis;
+    	display: -webkit-box;
+    	color: #232326;
+	    /*margin-top: 5px;*/
+	    line-height: 16px;
+    }
+    
+    /*商品价格*/
+   .floor-the-product-price{
+	   	display: inline-block;
+	   	padding: 0 5px 0 4px;
+   		font-size: 16px;
+   		color: red;
+   		position: relative;
+   		float: left;
+   		margin-top: -12px;
+   		margin-right: 8px;
+   }
+   
+   /*看相似*/
+	.floor-the-product-similar{
+		width: 50px;
+		height: 18px;
+		font-size: 12px;
+	  	float: right;
+   		margin-top: -12px;
+   		margin-right: 13px;
+   		border: 1px solid #bfbfbf;
+   		border-radius: 4px;
+	}
+    .floor-the-product-similar:after{
+	    /*content: "";
+	    width: 102px;
+	    height: 40px;
+	    border: 1px solid #bfbfbf;
+	    border-radius: 4px;
+	    -webkit-transform: scale(.5);
+	    transform: scale(.5);
+	    -webkit-transform-origin: top left;
+	    transform-origin: top left;*/
+    }
+    
+    
+     /*底部导航栏*/
+    .bottom{
+        /*display: flex;*/
+        /*display: -webkit-flex;*/
+        width: 100%;
+        position: fixed;
+        margin: auto;
+        padding:0;
+        bottom:0px;
+        left:0;
+        right:0;
+        /*以上是固定底部导航*/
+        background: white;
+        display: flex;
+        display: -webkit-flex;
+        text-align: center; /**居中显示 */
+    }
+    .bottom li{
+        float: left;
+        list-style: none;
+    }
+    .bottom img{
+        width: 80%;
+    }
+
+</style>
+<body>
+	<div class="mainContext">
+		<div class="header-top">
+			<div class="mjd-header" id="mjd-header">
+				<div class="m-common-header">
+					<div class="jd-common-header-icon">
+						<span></span>
+					</div>
+					<div class="jd-common-header-icon-login">
+						<span>登录</span>
+					</div>
+				</div>
+				<div class="common-head-search-wrapper">
+				<form class="jd-header-search-form">
+					<div class="jd-header-search-box">
+						<i class="search-input-left-jd"></i>
+						<i class="search-input-left-icon"></i>
+						<div class="search-input">
+							<input type="text" maxlength="20" placeholder="欧普照明" />
+						</div>
+					</div>
+				</form>
+			</div>
+			</div>
+			<!--图片列表-->
+			<!--图片轮播-->
+	    <div class="picture-transform">
+	        <div id="container">
+	            <div id="photo">
+	                <img src="static/images/imgActive/1.jpg" />
+	                <img src="static/images/imgActive/2.jpg" />
+	                <img src="static/images/imgActive/3.jpg" />
+	                <img src="static/images/imgActive/5.jpg" />
+	            </div>
+	        </div>
+	    </div>
+		</div>
+		
+		<!--第二部分 分类菜单-->
+		<div class="floor-box-wrapper">
+			<div class="floor-box-list">
+				<a>
+					<img src="static/images/imgClass/京.png"><br>
+            		<span>京东超市</span>
+				</a>
+				<a>
+					<img src="static/images/imgClass/东.png"><br>
+            		<span>数码电器</span>
+				</a>
+				<a>
+					<img src="static/images/imgClass/11.png"><br>
+            		<span>京东服饰</span>
+				</a>
+				<a>
+					 <img src="static/images/imgClass/点.png"><br>
+            		 <span>京东生鲜</span>
+				</a>
+				<a>
+					<img src="static/images/imgClass/11.png"><br>
+            		<span>京东到家</span>
+				</a>
+				<a>
+					<img src="static/images/imgClass/抢.png"><br>
+            		<span>充值缴费</span>
+				</a>
+				<a>
+					 <img src="static/images/imgClass/百.png"><br>
+            		 <span>9.9元拼</span>
+				</a>
+				<a>
+					 <img src="static/images/imgClass/亿.png"><br>
+            		 <span>领劵</span>
+				</a>
+				<a>
+					<img src="static/images/imgClass/补.png"><br>
+            		<span>赚钱</span>
+				</a>
+				<a>
+					<img src="static/images/imgClass/贴.png"><br>
+            	    <span>PLUS会员</span>
+				</a>
+			</div>
+		</div>
+		
+		<!--第三部分 热图-->
+		<div class="floor-the-hot">
+			<div class="floor-the-hot-container">
+				<div class="show-img">
+					 <img src="static/images/imgActive/hot.jpg">
+				</div>
+			</div>
+		</div>
+		
+		<!--第四部分 京东秒杀-->
+		<div class="floor-seckill">
+			<div class="floor-the-container">
+				 <!-- 京东秒杀-->
+		        <div class="top">
+		            <!--<span>京东秒杀</span>-->
+		            <div class="jd-skill-text"></div>
+		            <strong style="font-color:#000000;font-size: 12px;padding: 4px;">16点场</strong>
+		            <span class="countdown_kill"></span>
+		        </div>
+				<div class="seckill slide-box">
+		            <!-- 秒杀商品-->
+		            <div class="context">
+		                <img src="static/images/imgSeckill/1.jpg"><br>
+		                <span class="j_current_price">￥1999</span><br>
+		                <span class="j_init_price" price="269900">￥2699</span>
+		            </div>
+		            <div class="context">
+		                <img src="static/images/imgSeckill/2.jpg"><br>
+		                <span class="j_current_price">￥1999</span><br>
+		                <span class="j_init_price" price="269900">￥2699</span>
+		            </div>
+		            <div class="context">
+		                <img src="static/images/imgSeckill/3.jpg"><br>
+		                <span class="j_current_price">￥1999</span><br>
+		                <span class="j_init_price" price="269900">￥2699</span>
+		            </div>
+		            <div class="context">
+		                <img src="static/images/imgSeckill/4.png"><br>
+		                <span class="j_current_price">￥1999</span><br>
+		                <span class="j_init_price" price="269900">￥2699</span>
+		            </div>
+		            <div class="context">
+		                <img src="static/images/imgSeckill/5.jpg"><br>
+		                <span class="j_current_price">￥1999</span><br>
+		                <span class="j_init_price" price="269900">￥2699</span>
+		            </div>
+		        </div>
+			</div>
+		</div>
+		
+		
+		<!--第五部分 新人专享-->
+		<div class="floor floor-new-person">
+			<div class="floor-new-person-container" >
+				<div class="floor-new-person-show">
+					<div class="floor-new-person-show-img">
+						<img src="static/images/main/newperson-first.png" />
+					</div>
+				</div>
+				<div class="floor-new-person-show">
+					<div class="floor-new-person-show-img">
+						<img src="static/images/main/newperson-second.png" />
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<!--第六部分 热图推荐2-->
+		<div class="floor-the-hot2">
+			<div style="background-color: #c4031a;">
+				<div class="show-img">
+					 <img style="max-width: 100%;max-height: 100%;opacity: 1;" src="static/images/main/hot2.png">
+				</div>
+			</div>
+		</div>
+	
+		<!--第七部分 商品打折-->
+		<div class="floor-the-discount">
+			<div class="floor-the-discount-list">
+				<img class="floor-the-discount-list-backbg" src="static/images/heartCommend/4.1.png"/>
+				<div class="floor-the-discoun-imglist">
+					<img class="floor-the-discoun-list-img" src="static/images/heartCommend/4.1.jpg"/>
+				</div>
+				<!--<span class="floor-the-discount-span discount-span" style="color: #ffffff">宠物保健榜</span>-->
+				<span class="floor-the-discount-top-span discount-span">宠物保健榜</span>
+				<span class="floor-the-discount-bootom-span discount-span">宠物生活</span>
+			</div>
+			<div class="floor-the-discount-list">
+				<img class="floor-the-discount-list-backbg" src="static/images/heartCommend/4.2.png"/>
+				<div class="floor-the-discoun-imglist">
+					<img class="floor-the-discoun-list-img" src="static/images/heartCommend/4.2.jpg"/>
+				</div>
+				<span class="floor-the-discount-top-span discount-span">5G手机榜</span>
+				<span class="floor-the-discount-bootom-span discount-span">宠物生活</span>
+			</div>
+			<div class="floor-the-discount-list">
+				<img class="floor-the-discount-list-backbg" src="static/images/heartCommend/4.3.png"/>
+				<div class="floor-the-discoun-imglist">
+					<img class="floor-the-discoun-list-img" src="static/images/heartCommend/4.3.jpg"/>
+				</div>
+				<span class="floor-the-discount-top-span discount-span">中小学生</span>
+				<span class="floor-the-discount-bootom-span discount-span">宠物生活</span>
+			</div>
+			<div class="floor-the-discount-list">
+				<img class="floor-the-discount-list-backbg" src="static/images/heartCommend/4.4.png"/>
+				<div class="floor-the-discoun-imglist">
+					<img class="floor-the-discoun-list-img" src="static/images/heartCommend/4.4.jpg"/>
+				</div>
+				<span class="floor-the-discount-top-span discount-span">休闲周末</span>
+				<span class="floor-the-discount-bootom-span discount-span">宠物生活</span>
+			</div>
+		</div>
+	
+		<!--第八部分-->
+		<div class="floor-the-product">
+			<div class="floor-the-product-recommended">
+				<img src="static/images/heartCommend/推荐.png" />
+			</div>
+			<ul>
+	        		<li>
+	    			  	<img src="static/images/RtClass/手机.png"><br>
+		            	<span class="floor-the-product-simpler-desc">
+		            		艾尼卡（Anica） 触控智能mp4WiFi可上网蓝牙mp5mp3全面屏mp6随身听学生版播放器外放 幻彩蓝 机身8GB
+		            	</span>
+		            	<p>
+		            		<span class="floor-the-product-price">￥ 329</span>
+		            		<span class="floor-the-product-similar">看相似</span>
+		            	</p>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/耳机.png"><br>
+		            	<span class="floor-the-product-simpler-desc">
+		            		品牌直营&gt;鞋架子多层防尘简易经济型家用大学生宿舍小窄门口小鞋柜鞋子收纳 典雅黑3层【长42cm】
+		            	</span>
+		            	<p>
+		            		<span class="floor-the-product-price">￥ 39</span>
+		            		<span class="floor-the-product-similar">看相似</span>
+		            	</p>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/华为.png"><br>
+		            	<span class="floor-the-product-simpler-desc">
+		            		品牌直营&gt;鞋架子多层防尘简易经济型家用大学生宿舍小窄门口小鞋柜鞋子收纳 典雅黑3层【长42cm】
+		            	</span>
+		            	<p>
+		            		<span class="floor-the-product-price">￥ 39</span>
+		            		<span class="floor-the-product-similar">看相似</span>
+		            	</p>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/电饭煲.png"><br>
+		            	<span class="floor-the-product-simpler-desc">
+		            		品牌直营&gt;鞋架子多层防尘简易经济型家用大学生宿舍小窄门口小鞋柜鞋子收纳 典雅黑3层【长42cm】
+		            	</span>
+		            	<p>
+		            		<span class="floor-the-product-price">￥ 39</span>
+		            		<span class="floor-the-product-similar">看相似</span>
+		            	</p>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/电磁炉.png"><br>
+		            	<span class="floor-the-product-simpler-desc">
+		            		品牌直营&gt;鞋架子多层防尘简易经济型家用大学生宿舍小窄门口小鞋柜鞋子收纳 典雅黑3层【长42cm】
+		            	</span>
+		            	<p>
+		            		<span class="floor-the-product-price">￥ 39</span>
+		            		<span class="floor-the-product-similar">看相似</span>
+		            	</p>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/路由器.png"><br>
+		            	<span class="floor-the-product-simpler-desc">
+		            		品牌直营&gt;鞋架子多层防尘简易经济型家用大学生宿舍小窄门口小鞋柜鞋子收纳 典雅黑3层【长42cm】
+		            	</span>
+		            	<p>
+		            		<span class="floor-the-product-price">￥ 39</span>
+		            		<span class="floor-the-product-similar">看相似</span>
+		            	</p>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/避孕套.png"><br>
+		            	<span class="floor-the-product-simpler-desc">
+		            		品牌直营&gt;鞋架子多层防尘简易经济型家用大学生宿舍小窄门口小鞋柜鞋子收纳 典雅黑3层【长42cm】
+		            	</span>
+		            	<p>
+		            		<span class="floor-the-product-price">￥ 39</span>
+		            		<span class="floor-the-product-similar">看相似</span>
+		            	</p>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/口红.png"><br>
+		            	<span class="floor-the-product-simpler-desc">
+		            		品牌直营&gt;鞋架子多层防尘简易经济型家用大学生宿舍小窄门口小鞋柜鞋子收纳 典雅黑3层【长42cm】
+		            	</span>
+		            	<p>
+		            		<span class="floor-the-product-price">￥ 39</span>
+		            		<span class="floor-the-product-similar">看相似</span>
+		            	</p>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/吹风机.png"><br>
+		            	<span class="floor-the-product-simpler-desc">
+		            		品牌直营&gt;鞋架子多层防尘简易经济型家用大学生宿舍小窄门口小鞋柜鞋子收纳 典雅黑3层【长42cm】
+		            	</span>
+		            	<p>
+		            		<span class="floor-the-product-price">￥ 39</span>
+		            		<span class="floor-the-product-similar">看相似</span>
+		            	</p>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/三只松鼠.png"><br>
+		            	<span class="floor-the-product-simpler-desc">
+		            		品牌直营&gt;鞋架子多层防尘简易经济型家用大学生宿舍小窄门口小鞋柜鞋子收纳 典雅黑3层【长42cm】
+		            	</span>
+		            	<p>
+		            		<span class="floor-the-product-price">￥ 39</span>
+		            		<span class="floor-the-product-similar">看相似</span>
+		            	</p>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/洗衣液.png"><br>
+		            	<span class="floor-the-product-simpler-desc">
+		            		艾尼卡（Anica） 触控智能mp4WiFi可上网蓝牙mp5mp3全面屏mp6随身听学生版播放器外放 幻彩蓝 机身8GB
+		            	</span>
+		            	<p>
+		            		<span class="floor-the-product-price">￥ 329</span>
+		            		<span class="floor-the-product-similar">看相似</span>
+		            	</p>
+	        		</li>
+	        		<li>
+	    			  	<img src="static/images/RtClass/保温杯.png"><br>
+		            	<span class="floor-the-product-simpler-desc">
+		            		品牌直营&gt;鞋架子多层防尘简易经济型家用大学生宿舍小窄门口小鞋柜鞋子收纳 典雅黑3层【长42cm】
+		            	</span>
+		            	<p>
+		            		<span class="floor-the-product-price">￥ 39</span>
+		            		<span class="floor-the-product-similar">看相似</span>
+		            	</p>
+	        		</li>
+	        		
+        		</ul>
+		</div>
+			
+	</div>
+	<!-- 底部导航栏-->
+	<div class="bottom">
+	        <div>
+	            <a href="index.html"><img src="static/images/bottom/首页1.png"></a>
+	        </div>
+	        <div>
+	            <a href="分类.html"><img src="static/images/bottom/分类.png"></a>
+	        </div>
+	        <div>
+	            <a><img src="static/images/bottom/双11.gif"></a>
+	        </div>
+	        <div>
+	            <a><img src="static/images/bottom/购物车.png"></a>
+	        </div>
+	        <div>
+	            <a href="persons.html"><img src="static/images/bottom/我的.png"></a>
+	        </div>
+	</div>
+</body>
+<script type="application/javascript">
+	//	计时器
+    $('.countdown_kill').countdown('2019/12/12 23:00:00', function (event) {
+        $(this).html(event.strftime('%H:%M:%S'));
+    });
+</script>
+</html>

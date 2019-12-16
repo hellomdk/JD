@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS3实现图片平滑转换</title>
+</head>
+<body>
+<style>
+    #div01{
+        width:200px;
+        height:200px;
+        position: relative;
+    }
+    img{
+        width:200px;
+        height:200px;
+        border:1px solid aqua;
+        transition:all 1s ease-in-out;
+        /*这里的transition属性要放在img元素内，这样两张图片来回切换才会过渡的比较平滑*/
+    }
+    .img01-top{
+        position: absolute;
+        opacity: 0;
+        -webkit-transform: scale(0,0);
+        -moz-transform: scale(0,0);
+        -ms-transform: scale(0,0);
+        -o-transform: scale(0,0);
+        transform: scale(0,0);
+    }
+
+
+    /*我之前一直没有搞懂，我要触发的是图片，为什么直接用.img01-top:hover就达不到我想要的效果呢，后来想明白了，在这里我就详细的解释一下*/
+    /*（这里的.div01:hover .img01-top=.div01_hover.img01-top 后者主要是主要是兼容IE浏览器的）
+       我们需要的做的是让.img02-bottom图片消失的同时.img01-top图片显示，
+       然而.img02-bottom图片消失后.img01-top图片还是消失的状态（因为它的opacity:0;transform: scale(0,0);只有触发它才能显示），（因为图片放置的层叠顺序我们只能触发到.img02-bottom，也就是.img02-bottom的图片是可见的）所以无法给其添加.img01-top:hover，
+       所以这里要用.div01:hover .img01-top，因为div是永远存在，不会消失的，先触发div01 再触发.img01-top，这就是为什么我们平时所见到span，div元素外面还要再套一层div，只是作为一个容器，方便于添加你想完成的触发事件或样式等*/
+
+    .div01:hover .img01-top , .div01_hover .img01-top{
+        opacity:1;
+        transform: scale(1,1);
+        transform-origin: right top;
+    }
+    .div01:hover .img02-bottom , .div01_hover .img02-bottom{
+        opacity:0;
+        transform: scale(0,0);
+        transform-origin:left bottom ;
+    }
+</style>
+<div id="div01" class="div01">
+    <img  class="img01-top" src="images/imgActive/1.jpg" alt="sweety">
+    <img  class="img02-bottom" src="images/imgActive/2.jpg" alt="honey">
+</div>
+</body>
+</html>

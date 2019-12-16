@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>消息通知</title>
+</head>
+<style>
+    body{
+        background: #f7f7f7;
+        margin:0;
+		padding:0;
+    }
+    .backg{
+        background: #ffffff;
+    }
+    .container{
+    	width:100%;
+    	overflow: hidden;
+    	margin: auto;
+    	min-width:250px;
+    	/*min-height: 500px;*/
+    }
+    .header {
+    	width: 100%;
+        font-size: 16px;
+        display: flex;
+        display: -webkit-flex;
+    }
+
+    .icon1 {
+        display: inline-block;
+        width: 20px;
+        height: 30px;
+
+        background: url(static/images/jd-sprites.png) no-repeat;
+        background-position: -22px 3px;
+        background-size: 200px;
+        margin-left: 10px;
+        margin: 13px 0 0 15px;
+    }
+
+    .headertxt {
+        margin-top: 2%;
+        margin-left: 36%;
+    }
+    
+    
+    
+    /*主题部分*/
+    .main{
+    	margin-top: 3%;
+    }
+    
+    
+    .icon_content{
+    	display: block;/**设置成块级元素 */
+	    float: left;
+	    margin-right: 10px;
+	    margin-top: 5px;
+    }
+    
+    .span_left{
+    	float: left;
+    }
+    .span_right{
+    	font-size: 14px;
+    	color: #999;
+    	float: right;
+    }
+    .span_bottom{
+    	font-size: 14px;
+    	color: #999;
+    	overflow: hidden;
+    	white-space: nowrap;
+    	text-overflow: ellipsis;/**设置文本超出...*/
+    	padding: 5px 77px 5px 0;
+    }
+    
+    .item{
+    	position: relative;
+	    z-index: 1;
+	    display: block;
+	    overflow: hidden;
+	    padding: 0;
+	    margin: 2px;
+	    background: #fff;
+    }
+    .item p{
+    	line-height: 6px;
+    }
+    
+    .icon_header{
+    	display: block;/**设置成块级元素 */
+	    float: left;
+	    margin-right: 10px;
+	    margin-top: 5px;
+	    width: 8%;
+    }
+    .span_header{
+    	font-size: 16px;
+    	color: #999;
+    }
+    
+    /*div 圆角*/
+   .radis{
+   		border-radius: 15px 15px 0 0;
+   }
+    
+    /*第二部分*/
+   .main2{
+   		margin-top: 3%;
+   }
+    
+    
+</style>
+
+
+<body>
+<div class="container">
+    <div class="header backg">
+    	<a href="javascript:history.back(-1)">
+    			<span class="icon1"></span>
+		</a>
+        <span class="headertxt">消息(6)</span>
+        <span class="icon2"></span>
+    </div>
+
+	<!-- ul主题信息列表 -->
+    <div class="main">
+        <div class="main1">
+        	<div class="item radis">
+    	 		<a>
+    	 			<img class="icon_header"  src="static/images/information/icon1.png" />
+    	 			<p>
+    	 				<span class="span_header">最新消息</span>
+    	 			</p>
+           		</a>
+            </div>
+           	<div class="item">
+           		<a>
+	           	    <img class="icon_content" src="static/images/base/footer1.png" />
+       				<p>
+	       				<span class="span_left">优惠促销</span>
+	       				<span class="span_right">昨天</span><br>
+	       			</p>
+	               	<p class="span_bottom">
+	               		图书上新周，自营图书没满200减100，还送100元优惠卷
+	               	</p>
+           		</a>
+           	</div>
+           	<div class="item">
+           		<a>
+	           	    <img class="icon_content" src="static/images/base/footer1.png" />
+       				<p>
+	       				<span class="span_left">店铺头条</span>
+	       				<span class="span_right">星期五</span><br>
+	       			</p>
+	               	<p class="span_bottom">
+	               		小米冰雪季，季卡赢照片打印机了，先到先得
+	               	</p>
+           		</a>
+           	</div>
+           	<div class="item">
+           		<a>
+	           	    <img class="icon_content" src="static/images/base/footer1.png" />
+       				<p>
+	       				<span class="span_left">账户通知</span>
+	       				<span class="span_right">星期三</span><br>
+	       			</p>
+	               	<p class="span_bottom">
+	               		生日快乐！请收下我们为您精心准备的（生日贺卡）
+	               	</p>
+           		</a>
+           	</div>
+           	<div class="item">
+           		<a>
+	           	    <img class="icon_content" src="static/images/base/footer1.png" />
+       				<p>
+	       				<span class="span_left">服务通知</span>
+	       				<span class="span_right">2019/11/27</span><br>
+	       			</p>
+	               	<p class="span_bottom">
+	               		您购物车中的小米手环4nfc彩屏防水正在降价中
+	               	</p>
+           		</a>
+           	</div>
+           	<div class="item">
+           		<a>
+	           	    <img class="icon_content" src="static/images/base/footer1.png" />
+       				<p>
+	       				<span class="span_left">互动消息</span>
+	       				<span class="span_right">2019/11/15</span><br>
+	       			</p>
+	               	<p class="span_bottom">
+	               		3.5m的吗
+	               	</p>
+           		</a>
+           	</div>
+           	<div class="item">
+           		<a>
+	           	    <img class="icon_content" src="static/images/base/footer1.png" />
+       				<p>
+	       				<span class="span_left">交易物流</span>
+	       				<span class="span_right">2019/11/14</span><br>
+	       			</p>
+	               	<p class="span_bottom">
+	               		订单[微软笔记本...]已配送完成，期待您的下次光临
+	               	</p>
+           		</a>
+           	</div>
+    	</div>
+	
+		<div class="main2">
+        	<div class="item radis">
+    	 		<a>
+    	 			<img class="icon_header"  src="static/images/information/icon1.png" />
+    	 			<p>
+    	 				<span class="span_header">两周前的消息</span>
+    	 			</p>
+           		</a>
+            </div>
+           	<div class="item">
+           		<a>
+	           	    <img class="icon_content" src="static/images/base/footer1.png" />
+       				<p>
+	       				<span class="span_left">京返数码旗舰店</span>
+	       				<span class="span_right">2019/11/09</span><br>
+	       			</p>
+	               	<p class="span_bottom">
+	               		
+	               	</p>
+           		</a>
+           	</div>
+           	<div class="item">
+           		<a>
+	           	    <img class="icon_content" src="static/images/base/footer1.png" />
+       				<p>
+	       				<span class="span_left">圆迈智能旗舰店</span>
+	       				<span class="span_right">2019/11/09</span><br>
+	       			</p>
+	               	<p class="span_bottom">
+	               		
+	               	</p>
+           		</a>
+           	</div>
+    	</div>
+    </div>
+
+</div>
+</body>
+</html>

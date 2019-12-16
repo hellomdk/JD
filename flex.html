@@ -1,0 +1,483 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>京东首页</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!--    计时器引入-->
+    <script src="https://cdn.bootcss.com/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
+</head>
+<body>
+<style type="text/css">
+    /*头部搜索栏css*/
+    .contain{
+        background: red;
+        width: 100%;
+    }
+    .header{
+        width: 100%;
+        position: fixed;
+        background: red;
+        margin-top: -10%;
+    }
+    .headerTop{
+        display: flex;
+        display: -webkit-flex;
+        margin-top: 13px;
+    }
+    .headerTop div{
+        display: inline-block;
+    }
+    .menu span{
+        /*menu菜单扣取*/
+        /*搜索按钮扣取*/
+        display: block;
+        width: 30px;
+        height: 28px;
+        background: url(static/images/jd-sprites.png) no-repeat;
+        background-position: -8px -44px;
+        background-size: 300px;
+        margin-left: 10px;
+        margin: 8px 0 0 15px;
+        position: relative;
+        z-index: 1;
+        float: left;
+        top: -5px;
+        /*设置投影 改变背景色*/
+        left:-43px;
+        filter:drop-shadow( 45px 0 0px white);
+
+    }
+    .JD{
+        /*京东图标*/
+        display: block;
+        width: 20px;
+        height: 18px;
+        background: url(static/images/jd-sprites.png) no-repeat;
+        background-position: -1px 0;
+        background-size: 200px;
+        margin-left: 10px;
+        margin: 8px 0 0 15px;
+        position: relative;
+        z-index: 1;
+        float: left;
+        margin-top: -27px;
+        /*border-right:1px solid #000*/
+    }
+    .search{
+        width: 70%;
+        margin-left:  3%;
+        /*margin-top: 10px;*/
+    }
+    .search1{
+        display: inline-block;
+        width: 100%;
+        border: none;
+        border-radius: 15px;
+        height: 30px;
+        overflow: hidden;
+        background: #f7f7f7;
+        font-size: 12px;
+        -webkit-box-align: center;
+        line-height: 30px;
+        position: relative;
+        top: 0;
+        left: 0;
+        padding-left: 35px;
+        padding-right: 10px;
+        box-sizing: border-box
+    }
+    .search_icon{
+        /*搜索按钮扣取*/
+        display: block;
+        width: 18px;
+        height: 15px;
+        background: url(static/images/jd-sprites.png) no-repeat;
+        background-position: -80px 0;
+        background-size: 200px;
+
+        margin: 8px 0 0 15px;
+        position: relative;
+        z-index: 1;
+        float: left;
+        margin-top: -27px;
+        margin-left: 40px;
+    }
+
+    .search input{
+        width: 90%;
+        margin-left: 27px;
+        border: none;/* 去除input边框 */
+    }
+    .login{
+        /*margin-right: 10%;*/
+        /*margin-top: 1%;*/
+        margin: auto;
+        float: right;
+    }
+
+    /*图片轮播css*/
+    .imgActive{
+        margin-top: 10%;
+    }
+    #container {
+        width: 96%;
+        height: 200px;
+        border: none;
+        border-radius: 15px;/** 图片切角 */
+        overflow: hidden;
+        margin: auto;
+    }
+
+    #photo {
+        width: 3500px;
+        animation: switch 5s ease-out infinite;
+    }
+
+    #photo > img {
+        float: left;
+        width: 630px;
+        height: 300px;
+    }
+
+    @keyframes switch {
+        0%, 25% {
+            margin-left: 0;
+        }
+        25%, 50% {
+            margin-left: -400px;
+        }
+        50%, 75% {
+            margin-left: -800px;
+        }
+        75%, 100% {
+            margin-left: -1200px;
+        }
+    }
+
+
+    /*hot热图*/
+    .main{
+        margin-top: 10px;
+        margin-bottom: 30%;
+    }
+    .hotImg img{
+        /*margin-left: 10px;*/
+        width: 100%;
+        border-radius: 15px;/**图片切角 */
+    }
+    .imgClass{
+        background: white;
+        /*弹性布局*/
+        display: flex;
+        display: -webkit-flex;
+        text-align: center; /**居中显示 */
+    }
+    .context img{
+        width: 60%;
+    }
+
+    /*秒杀部分*/
+    .seckills{
+        text-align: center;
+        width: 96%;
+        z-index: 0;
+        background: white;
+        border-radius: 10px;/**图片切角 */
+        margin: auto;
+        margin-top: 10px;
+    }
+    .seckill{
+        display: flex;
+        display: -webkit-flex;
+    }
+    .seckill span{
+        text-align: center;
+    }
+    .j_init_price{
+        color: #999;
+        font-size: 12px;
+        text-decoration-line: line-through;/** 给商品划线 */
+        line-height: 10px;
+        margin-left: 10px;
+    }
+    /*div横向滚动*/
+    .slide-box{
+        display: -webkit-box;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling:touch;
+    }
+    .top{
+        text-align: left;
+        font-size: 2ex;
+    }
+
+    /*热图推荐*/
+    .hotImg img{
+        background: white;
+        text-align: center;
+        width: 100%;
+    }
+
+    /*走心推荐*/
+    .heartCommend{
+        margin-top: 2%;
+        background: red;
+        text-align: center;
+    }
+    .heartCommend img{
+        width: 80%;
+        border-radius: 9px;/**图片切角 */
+    }
+
+    .innerImg01{
+        background: url(static/images/heartCommend/4.1.png) 0 0 no-repeat;
+        /*width: 80%;*/
+    }
+
+    .innerImg01 img{
+        width: 70%;
+        padding: auto;
+        padding-left: 19px;
+        padding-bottom: 60px;
+        padding-top: 93px;
+        margin-left: -32%;
+        margin-top: -35%;
+    }
+
+
+    .span1{
+        position: absolute;
+        margin-left: -5%;
+    }
+
+    .span2{
+        position: absolute;
+        margin-top: 31%;
+        margin-left: -17%;
+    }
+
+    .heartCommend2{
+        display: flex;
+        display: -webkit-flex;
+        text-align: center; /**居中显示 */
+        margin: auto;
+        margin-left: 4%;
+    }
+
+
+    /*底部导航栏*/
+    .bottom{
+        /*display: flex;*/
+        /*display: -webkit-flex;*/
+        width: 100%;
+        position: fixed;
+        margin: auto;
+        padding:0;
+        bottom:0px;
+        left:0;
+        right:0;
+        /*以上是固定底部导航*/
+        background: white;
+        display: flex;
+        display: -webkit-flex;
+        text-align: center; /**居中显示 */
+    }
+    .bottom li{
+        float: left;
+        list-style: none;
+    }
+    .bottom img{
+        width: 80%;
+    }
+</style>
+<div class="contain">
+    <div class="header">
+            <div class="headerTop">
+                <div class="menu">
+                    <span></span>
+                </div>
+                <div class="search">
+                    <div class="search1">
+                        <input type="text" name="search" placeholder="保险箱">
+                    </div>
+                    <span class="JD"></span>
+                    <span class="search_icon"></span>
+                </div>
+                <div class="login">
+                    <span>登录</span>
+                </div>
+            </div>
+    </div>
+
+    <!--图片轮播-->
+    <div class="imgActive">
+        <div id="container">
+            <div id="photo">
+                <img src="static/images/imgActive/1.jpg" />
+                <img src="static/images/imgActive/2.jpg" />
+                <img src="static/images/imgActive/3.jpg" />
+                <img src="static/images/imgActive/4.jpg" />
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+    <!-- 分类推荐-->
+    <div class="imgClass">
+        <div class="context">
+            <img src="static/images/imgClass/京.png"><br>
+            <span>京东超市</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgClass/东.png"><br>
+            <span>数码电器</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgClass/11.png"><br>
+            <span>京东服饰</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgClass/点.png"><br>
+            <span>京东生鲜</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgClass/11.png"><br>
+            <span>京东到家</span>
+        </div>
+    </div>
+
+	<div class="imgClass">
+        <div class="context">
+            <img src="static/images/imgClass/抢.png"><br>
+            <span>充值缴费</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgClass/百.png"><br>
+            <span>9.9元拼</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgClass/亿.png"><br>
+            <span>领劵</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgClass/补.png"><br>
+            <span>赚钱</span>
+        </div>
+        <div class="context">
+            <img src="static/images/imgClass/贴.png"><br>
+            <span>PLUS会员</span>
+        </div>
+    </div>
+        
+    <!-- hot热图-->
+    <div class="hotImg">
+        <img src="static/images/imgActive/hot.jpg">
+    </div>
+
+    <!-- 秒杀专场-->
+    <div class="seckills">
+        <!-- 京东秒杀-->
+        <div class="top">
+            <span>京东秒杀</span>
+            <span class="countdown_kill"></span>
+        </div>
+        <!-- 商品滑动-->
+        <div class="seckill slide-box">
+            <!-- 秒杀商品-->
+            <div class="context">
+                <img src="static/images/imgSeckill/1.jpg"><br>
+                <span>￥1999</span><br>
+                <span class="j_init_price" price="269900">￥2699</span>
+            </div>
+            <div class="context">
+                <img src="static/images/imgSeckill/2.jpg"><br>
+                <span>￥1999</span><br>
+                <span class="j_init_price" price="269900">￥2699</span>
+            </div>
+            <div class="context">
+                <img src="static/images/imgSeckill/3.jpg"><br>
+                <span>￥1999</span><br>
+                <span class="j_init_price" price="269900">￥2699</span>
+            </div>
+            <div class="context">
+                <img src="static/images/imgSeckill/4.png"><br>
+                <span>￥1999</span><br>
+                <span class="j_init_price" price="269900">￥2699</span>
+            </div>
+            <div class="context">
+                <img src="static/images/imgSeckill/5.jpg"><br>
+                <span>￥1999</span><br>
+                <span class="j_init_price" price="269900">￥2699</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 走心推荐 图片滑动切换-->
+    <div class="heart">
+        <!-- 最好设置成相册滚动轮播图 -->
+        <div class="heartCommend imgClass">
+            <div class="img01">
+                <img src="static/images/heartCommend/1.png">
+            </div>
+            <div class="img02">
+                <img src="static/images/heartCommend/2.jpg">
+            </div>
+            <div class="img03">
+                <img src="static/images/heartCommend/3.jpg">
+            </div>
+        </div>
+        <div class="heartCommend">
+            <img src="static/images/heartCommend/commend.png">
+        </div>
+        <div class="heartCommend2">
+            <div class="innerImg01">
+                <span class="span1">牛奶乳品榜</span>
+                <img src="static/images/heartCommend/4.1.jpg">
+                <span class="span2">热卖尖货</span>
+            </div>
+            <div class="innerImg01">
+                <span class="span1">牛奶乳品榜</span>
+                <img src="static/images/heartCommend/4.1.jpg">
+                <span class="span2">热卖尖货</span>
+            </div>
+            <div class="innerImg01">
+                <span class="span1">牛奶乳品榜</span>
+                <img src="static/images/heartCommend/4.1.jpg">
+                <span class="span2">热卖尖货</span>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- 底部导航栏-->
+    <div class="bottom">
+        <div>
+            <a><img src="static/images/bottom/首页.png"></a>
+        </div>
+        <div>
+            <a><img src="static/images/bottom/分类.png"></a>
+        </div>
+        <div>
+            <a><img src="static/images/bottom/双11.gif"></a>
+        </div>
+        <div>
+            <a><img src="static/images/bottom/购物车.png"></a>
+        </div>
+        <div>
+            <a><img src="static/images/bottom/我的.png"></a>
+        </div>
+    </div>
+</div>
+
+</body>
+<script type="application/javascript">
+    $('.countdown_kill').countdown('2019/11/12 23:00:00', function (event) {
+        $(this).html(event.strftime('%H:%M:%S'));
+        // console.log(event.strftime('%D天%H时%M分%S秒'))
+    });
+</script>
+</html>

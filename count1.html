@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+</head>
+<style>
+    body{
+        background: #f7f7f7;
+        margin:0;
+		padding:0;
+    }
+    .backg{
+        background: #ffffff;
+    }
+    .container{
+    	width:100%;
+    	overflow: hidden;
+    	margin: auto;
+    	min-width:250px;
+    	/*min-height: 500px;*/
+    }
+    .header {
+    	width: 100%;
+        font-size: 16px;
+        display: flex;
+        display: -webkit-flex;
+    }
+
+    .icon1 {
+        display: inline-block;
+        width: 20px;
+        height: 30px;
+
+        background: url(static/images/jd-sprites.png) no-repeat;
+        background-position: -22px 3px;
+        background-size: 200px;
+        margin-left: 10px;
+        margin: 13px 0 0 15px;
+    }
+
+    .headertxt {
+        margin-top: 2%;
+        margin-left: 36%;
+    }
+    
+    .pane{
+    	position: relative;
+    	padding-bottom: 6%;
+    }
+
+    .managerAccount span {
+        font-size: 16px;
+    }
+
+    .tip {
+        width: 96%;
+        height: 100px;
+        margin-left: 2%;
+        background: #fff9f9;
+        border: 1px solid #e93b3d;
+        border-radius: 10px; /**图片切角 */
+        display: flex;
+        display: -webkit-flex;
+    }
+
+    .tou {
+    	position: absolute;
+    	top: 29px;
+    	left: 4%;
+    }
+    
+    .tou img{
+	    width: 45px;
+    }
+
+    .user_details {
+    	position: absolute;
+	    top: 18px;
+    	left: 18%;
+    }
+
+    .user_details p {
+        font-size: 12px;
+    }
+    
+    /*.main{
+    	margin-top: 15%;
+    }*/
+    
+    .main ul{
+		position: relative;
+		margin-bottom: 15px;
+		background: #fff;
+    }
+
+    .main li{
+	    margin: 0;
+		padding: 0;
+		list-style: none;
+		line-height: 44px;
+    }
+    
+    .account_manage li a{
+        display: block;
+	    position: relative;
+	    height: 44px;
+	    line-height: 44px;
+	    margin-left: -26px;
+	    padding-right: 27px;
+	    font-size: 16px;
+	    color: #333;
+    }
+    
+    .account_manage li a::after {
+       	content: "";
+	    display: inline-block;
+	    background: url(static/images/base/右箭头.png);
+	    background-size: 15px;
+	    width: 15px;
+	    height: 15px;
+	    position: absolute;
+	    right: 4px;
+	    margin: 16px 0 0 15px;
+    }
+    
+    .span1{
+         font-size: 16px;
+     }
+    .span2{
+        font-size: 12px;
+        color: #999;
+        float: right;
+        /*margin-right: 8%;*/
+    }
+    .current_account_tip {
+    	/*当前登录组件*/
+	    position: absolute;
+	    top: 1px;
+    	right: 28px;
+	   /* padding: 1px 10px;*/
+	    /*background-color: #ffe4e4;
+	    color: #e2231a;
+	    border-top-right-radius: 10px;
+	    border-bottom-left-radius: 10px;*/
+	}
+	.top_right_decoration_points{
+		position: absolute;
+	    bottom: 36px;
+	    right: 59px;
+	    width: 27px;
+	    height: 22px;
+	    background-image: url(static/images/base/pane1.png);
+	    background-size: 27px 22px;
+	}
+	.top_right_decoration_ring{
+		position: absolute;
+		bottom: 33px;
+    	right: 21px;
+	    width: 13px;
+	    height: 13px;
+	    background: transparent;
+	    border-radius: 100%;
+	    border: 2px solid #ffa9a9;
+	    opacity: .3;
+	}
+	.top_right_decoration_circle{
+	    position: absolute;
+	    width: 32px;
+	    height: 32px;
+	    bottom: 23px;
+	    right: 5px;
+	    border-radius: 32px 0 13px 0;
+	    background-color: #ffa9a9;
+	    opacity: .3;
+	}
+	
+	/*footer 样式*/
+	.footer{
+		width: 100%;
+		margin-bottom: 30%;
+	}
+	.footerNav{
+		margin-top: 6%;
+		 /*弹性布局*/
+        display: flex;
+        display: -webkit-flex;
+        text-align: center; /**居中显示 */
+	}
+	.footerNav img{
+		width: 15%;
+		margin: 0 0px -5px;
+	}
+	.footerNav a{
+	    -webkit-flex: 1;
+	    flex: 1;
+	    font-size: 12px;
+	    color: #666;
+	}
+	.qq_footer{
+	    margin: 25px 0 75px;
+	}
+	.jd_logo{
+		display: block;
+        width: 100px;
+   		height: 20px;
+	    margin: 0 auto;
+	    background: url(static/images/base/京东狗.png);
+	    background-size: 100%;
+	}
+</style>
+<body>
+<div class="container">
+    <div class="header backg">
+    	<a href="javascript:history.back(-1)">
+    		<span class="icon1"></span>
+    	</a>
+        <span class="headertxt">账号管理</span>
+        <span class="icon2"></span>
+    </div>
+	<!-- 管理我的账号 pane面板-->
+    <div class="managerAccount backg">
+        <div style="padding: 16px">
+            <span>管理我的账号</span>
+        </div>
+        <div class="pane">
+            <div class="tip">
+                <div class="tou">
+                    <img src="static/images/base/头像.png">
+                </div>
+                <div class="user_details">
+                    <p>mdk186*****181</p>
+                    <p>用户名: mdk18638924181</p>
+                </div>
+                <div class="current_account_tip">当前登录</div>
+                <div class="top_right_decoration_points"></div>
+                <div class="top_right_decoration_ring"></div>
+                <div class="top_right_decoration_circle"></div>
+            </div>
+        </div>
+    </div>
+
+	<!-- ul主题信息列表 -->
+    <div class="main">
+        <div class="main2">
+            <ul class="account_manage">
+               <li class="item">
+                   <a>
+                       <span class="span1">收货地址管理</span>
+                       <span class="span2">管理我的地址</span>
+                   </a>
+
+               </li>
+            </ul>
+        </div>
+        <div class="main2">
+            <ul class="account_manage">
+                <li>
+                    <a>
+                        <span class="span1">实名认证</span>
+                        <span class="span2">已实名认证</span>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <span class="span1">修改手机号</span>
+                        <span class="span2">186*****181</span>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <span class="span1">账号登录密码</span>
+                        <span class="span2">定期修改更安全</span>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <span class="span1">京东支付密码</span>
+                        <span class="span2">已设置</span>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <span class="span1">关联邮箱</span>
+                        <span class="span2">未设置</span>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <span class="span1">关联账号</span>
+                        <span class="span2"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main2">
+            <ul class="account_manage">
+                <li>
+                    <a>
+                    	<span class="span1">联系客服</span>
+                        <span class="span2">即时解答用户疑难</span>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                    	<span class="span1">切换站点</span>
+                    	<span class="span2"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+        <!--<div class="main2" style="text-align: center">
+            <ul>
+                <li>
+                    <a><span class="span1">退出登录</span></a>
+                </li>
+            </ul>
+        </div>-->
+    </div>
+
+	<!-- footer 底部-->
+	<div class="footer">
+		<div class="footerNav">
+			<a class="logo">
+	        	<img src="static/images/base/footer1.png" alt="">
+	        	意见反馈
+	    	</a>
+	    	<a class="logo">
+				<img src="static/images/base/footer2.png" alt="">        	
+				京东客户端
+	    	</a>
+	    	<a class="logo">
+	    		<img src="static/images/base/footer3.png" alt="">
+	        	退出登录
+	    	</a>
+		</div>
+		<div class="qq_footer">
+			<div class="jd_logo" id="jdBtmLogo"></div>
+		</div>
+	</div>
+	
+</div>
+</body>
+</html>
